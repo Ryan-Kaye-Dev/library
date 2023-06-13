@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#bookList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  align-items: center;
+  justify-items: center;
+}
+
+#container.focussed {
+    height: 100vh;
+    background-color: white;
+}
+
+#container.unfocussed {
+    height: 100vh;
+    background-color: grey;
+}
+
+.book-card {
+  font-family: "Roboto", sans-serif;
+  color: white;
+  background-color: rgb(63, 138, 199);
+  margin: 5px;
+  padding: 10px;
+  border-radius: 2px;
+  box-shadow: 1px 1px 5px -1px rgb(0, 0, 0);
+}
+
+#button-bar {
+  display: flex;
+  justify-content: center;
+}
+
+#form-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, .7);
+  }
+  
+  #form-grid {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    text-align: end;
+  }
+  
+  label {
+    grid-column: 1;
+  }
+  
+  input {
+    grid-column: 2;
+  }
+  
+  .submit {
+    grid-column: 1 / -1;
+  }
+
+.off {
+  display: none;
+}
