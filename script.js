@@ -1,43 +1,34 @@
 let myLibrary = [];
 
+// Book constructor
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
-  this.info = function () {
-    return (
-      `${title}` +
-      ` by ` +
-      `${author}` +
-      `, ` +
-      `${pages}` +
-      ` pages,` +
-      `${read}` +
-      `.`
-    );
-  };
 }
 
+// Toggle the read status of a book
+Book.prototype.toggleReadStatus = function() {
+  this.read = !this.read;
+};
+
+// Add a book to the library
 function addBookToLibrary(book) {
   return myLibrary.push(book);
 }
 
-function clearForm() {
-  titleInput.value = "";
-  authorInput.value = "";
-  pagesInput.value = "";
-  readInput.value = "";
-}
-const removeBook= (index) => {
+// Remove a book from the library
+const removeBook = (index) => {
   myLibrary.splice(index, 1);
-  displayBook()
-}
+  displayBook();
+};
 
+// Display the books in the library
 const displayBook = () => {
-  // get bookList from HTML
+  // Get bookList from HTML
   const bookList = document.getElementById("bookList");
-  // clear the booklist before rendering
+  // Clear the booklist before rendering
   bookList.innerHTML = "";
 
   myLibrary.forEach((book, index) => {
@@ -45,7 +36,7 @@ const displayBook = () => {
     bookCard.classList.add("book-card");
     bookList.appendChild(bookCard);
 
-    bookCard.dataset.libraryIndex = index
+    bookCard.dataset.libraryIndex = index;
 
     const title = document.createElement("p");
     title.textContent = `"` + book.title + `"`;
@@ -59,12 +50,23 @@ const displayBook = () => {
     pages.textContent = book.pages + ` Pages`;
     bookCard.appendChild(pages);
 
-    const read = document.createElement("p");
-    read.textContent = book.read;
-    bookCard.appendChild(read);
+    const readButton = document.createElement("button");
+    bookCard.appendChild(readButton);
+
+    // Toggle the class based on the read status
+    readButton.classList.toggle("read-button", book.read);
+    readButton.classList.toggle("unread-button", !book.read);
+
+    // Set the text content based on the read status
+    readButton.textContent = book.read ? "Read" : "Not Read";
+
+    readButton.addEventListener("click", function() {
+      book.toggleReadStatus();
+      displayBook();
+    });
 
     const removeButton = document.createElement("button");
-    removeButton.textContent = "Remove"
+    removeButton.textContent = "Remove Book";
     bookCard.appendChild(removeButton);
     removeButton.classList.add("remove-button");
 
@@ -74,42 +76,53 @@ const displayBook = () => {
   });
 };
 
-// get new book button
+// Get new book button
 const newBookButton = document.getElementById("new-book");
-// get form element
+// Get form element
 const formElement = document.getElementById("form-box");
-// get container element
-const containerElement = document.getElementById("container")
+// Get container element
+const containerElement = document.getElementById("container");
 
-// get remove buttons
-  
-
-// add event listener for button click
-newBookButton.addEventListener("click", function () {
+// Add event listener for new book button click
+newBookButton.addEventListener("click", function() {
   formElement.classList.replace("off", "on");
   containerElement.classList.replace("focussed", "unfocussed");
 });
 
-//get input elements
+// Get input elements
 const titleInput = document.getElementById("title");
 const authorInput = document.getElementById("author");
 const pagesInput = document.getElementById("pages");
 const readInput = document.getElementById("read");
 
-// get submit button
-const submitbutton = document.getElementById("submit");
-submitbutton.addEventListener("click", function (event) {
+// Get submit button
+const submitButton = document.getElementById("submit");
+submitButton.addEventListener("click", function(event) {
   event.preventDefault();
   formElement.classList.replace("on", "off");
-  containerElement.classList.replace("unfocussed", "focussed")
+  containerElement.classList.replace("unfocussed", "focussed");
 
+  // Get form input values
   let bookTitle = titleInput.value;
   let bookAuthor = authorInput.value;
   let bookPages = pagesInput.value;
-  let bookRead = readInput.value;
+  let bookRead = readInput.checked;
 
+  // Create a new book object
   const book = new Book(bookTitle, bookAuthor, bookPages, bookRead);
+  // Add the book to the library
   addBookToLibrary(book);
+  // Clear the form input values
   clearForm();
-  displayBook(book);
+  // Display the updated book list
+  displayBook();
+  console.log(book);
 });
+
+// Clear the form input values
+function clearForm() {
+  titleInput.value = "";
+  authorInput.value = "";
+  pagesInput.value = "";
+  readInput.checked = false;
+}

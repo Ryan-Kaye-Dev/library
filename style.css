@@ -50,11 +50,11 @@ h1 {
   cursor: pointer;
 }
 
-#new-book:hover, .submit:hover {
+#new-book:hover, .submit:hover, .read-button:hover {
   background-color: #45a049;
 }
 
-#new-book:focus, .submit:hover {
+#new-book:focus, .submit:hover, .read-button:hover {
   outline: none;
   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
 }
@@ -96,7 +96,7 @@ h1 {
   overflow: hidden;
   font-size: 32px;
   text-align: center;
-  background-color: #4caf50;
+  background-color: rgb(48, 45, 45);
   min-width: 200px;
   min-height: 300px;
   display: flex;
@@ -182,3 +182,26 @@ input, select {
   color: white;
 }
 
+.unread-button {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  color: darkred;
+  background-color: lightcoral;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.read-button {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  color: white;
+  background-color: #4caf50;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
