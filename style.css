@@ -1,37 +1,121 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
 
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
 
+#header {
+  height: 20vh;
+display: grid;
+grid-template-columns: 1fr 4fr 1fr;
+align-items: center;
+justify-items: center;
+background-color: rgba(128, 128, 128, 0.699);
+box-shadow: 0px 1px 8px 1px black;
+}
+
+#logo {
+  grid-column: 3 / -1;
+width: 150px;
+}
+
+h1 {
+  padding: 20px;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+}
+
+#text {
+  font-size: 48px;
+  padding-left: 20px;
+  grid-column: 1 / 1;
+  font-family: "Roboto", sans-serif;
+}
+
+#new-book, .submit {
+  margin-top: 10px;
+  display: inline-block;
+  padding: 10px 20px;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  color: #ffffff;
+  background-color: #4caf50;
+  border-radius: 4px;
+  border: none;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+#new-book:hover, .submit:hover {
+  background-color: #45a049;
+}
+
+#new-book:focus, .submit:hover {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+
 #bookList {
+  padding: 50px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(1, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+  gap: 25px;
   align-items: center;
   justify-items: center;
 }
 
 #container.focussed {
-    height: 100vh;
-    background-color: white;
+  z-index: 2;
+  height: 100vh;
+  background-color: white;
+  position: relative;
 }
 
 #container.unfocussed {
-    height: 100vh;
-    background-color: grey;
+  z-index: 1;
+  height: 100vh;
+  background-color: rgba(128, 128, 128, 0.519);
+  position: relative;
 }
 
 .book-card {
+  z-index: 0;
   font-family: "Roboto", sans-serif;
   color: white;
-  background-color: rgb(63, 138, 199);
   margin: 5px;
   padding: 10px;
-  border-radius: 2px;
-  box-shadow: 1px 1px 5px -1px rgb(0, 0, 0);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  font-size: 32px;
+  text-align: center;
+  background-color: #4caf50;
+  min-width: 200px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
 }
+
+.book-card.p {
+  padding: 20px;
+  margin: 20px;
+}
+
+.book-card:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
 
 #button-bar {
   display: flex;
@@ -39,36 +123,46 @@
 }
 
 #form-box {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, .7);
-  }
-  
-  #form-grid {
-    padding: 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    text-align: end;
-  }
-  
-  label {
-    grid-column: 1;
-  }
-  
-  input {
-    grid-column: 2;
-  }
-  
-  .submit {
-    grid-column: 1 / -1;
-  }
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.7);
+  opacity: 0; /* Initially hide the form box */
+  z-index: 3;
+}
 
-.off {
-  display: none;
+#form-grid {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  text-align: end;
+}
+
+label {
+  font-family: "Roboto", sans-serif;
+  grid-column: 1;
+}
+
+input {
+  grid-column: 2;
+}
+
+.submit {
+  grid-column: 1 / -1;
+}
+
+#form-box.off {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.2);
+}
+
+#form-box.on {
+  transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
 }

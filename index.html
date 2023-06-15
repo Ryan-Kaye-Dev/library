@@ -4,19 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Wiener Dog Library</title>
     <head>
+      <link rel="icon" href="./favicon.svg">
       <link rel="stylesheet" href="./style.css" />
     </head>
   </head>
   <body>
     <div id="container" class="focussed">
+      <div id="header">
+        <p id="text">library.js</p>
+        <img src="./logo2.png" id="logo" alt="Logo">
+      </div>
+      <div id="button-bar">
+        <button id="new-book">+ New Book</button>
+      </div>
+      <h1>Your Collection:</h1>
       <div id="book-container">
         <div id="bookList"></div>
       </div>
-      <div id="button-bar">
-        <button id="new-book">New Book</button>
-      </div>
+      
       <div id="form-box" class="off">
         <form id="form-grid" action="">
           <label for="title">Title:</label>
@@ -28,8 +35,8 @@
           <label for="read">Read:</label>
           <select id="read" name="read">
             <option value="blank"></option>
-            <option value="read">Read</option>
-            <option value="not-read">Not read yet</option>
+            <option value="Read">Read</option>
+            <option value="Not Read">Not read yet</option>
           </select>
           <input id="submit" class="submit" type="submit" />
         </form>

@@ -29,6 +29,10 @@ function clearForm() {
   pagesInput.value = "";
   readInput.value = "";
 }
+const removeBook= (index) => {
+  myLibrary.splice(index, 1);
+  displayBook()
+}
 
 const displayBook = () => {
   // get bookList from HTML
@@ -36,13 +40,15 @@ const displayBook = () => {
   // clear the booklist before rendering
   bookList.innerHTML = "";
 
-  myLibrary.forEach((book) => {
+  myLibrary.forEach((book, index) => {
     const bookCard = document.createElement("div");
     bookCard.classList.add("book-card");
     bookList.appendChild(bookCard);
 
+    bookCard.dataset.libraryIndex = index
+
     const title = document.createElement("p");
-    title.textContent = book.title;
+    title.textContent = `"` + book.title + `"`;
     bookCard.appendChild(title);
 
     const author = document.createElement("p");
@@ -56,9 +62,16 @@ const displayBook = () => {
     const read = document.createElement("p");
     read.textContent = book.read;
     bookCard.appendChild(read);
+
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "Remove"
+    bookCard.appendChild(removeButton);
+
+    removeButton.addEventListener("click", function() {
+      removeBook(index);
+    });
   });
 };
-displayBook();
 
 // get new book button
 const newBookButton = document.getElementById("new-book");
@@ -66,6 +79,9 @@ const newBookButton = document.getElementById("new-book");
 const formElement = document.getElementById("form-box");
 // get container element
 const containerElement = document.getElementById("container")
+
+// get remove buttons
+  
 
 // add event listener for button click
 newBookButton.addEventListener("click", function () {
