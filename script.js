@@ -66,6 +66,7 @@ const displayBook = () => {
     const removeButton = document.createElement("button");
     removeButton.textContent = "Remove"
     bookCard.appendChild(removeButton);
+    removeButton.classList.add("remove-button");
 
     removeButton.addEventListener("click", function() {
       removeBook(index);

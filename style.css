@@ -110,13 +110,6 @@ h1 {
   margin: 20px;
 }
 
-.book-card:hover {
-  transform: scale(1.15);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-
-
 #button-bar {
   display: flex;
   justify-content: center;
@@ -124,9 +117,9 @@ h1 {
 
 #form-box {
   position: fixed;
-  top: 50%;
+  top: 60vh;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50vh, -50vh);
   background-color: white;
   padding: 20px;
   border-radius: 5px;
@@ -144,11 +137,16 @@ h1 {
 }
 
 label {
+  margin-top: 5px;
   font-family: "Roboto", sans-serif;
   grid-column: 1;
 }
 
-input {
+input, select {
+  border: solid 1px black;
+  box-shadow: none;
+  border-radius: 1px;
+  margin-top: 5px;
   grid-column: 2;
 }
 
@@ -166,3 +164,21 @@ input {
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
 }
+
+.remove-button {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  color: darkred;
+  background-color: lightcoral;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.remove-button:hover {
+  background-color: indianred;
+  color: white;
+}
+
