@@ -205,3 +205,10 @@ input, select {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
+.error {
+  background-color: rgb(236, 113, 113);
+  color: rgb(49, 3, 3);
+  font-size: 12px;
+  font-family: "Roboto" sans-serif;
+}

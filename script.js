@@ -99,14 +99,46 @@ const readInput = document.getElementById("read");
 const submitButton = document.getElementById("submit");
 submitButton.addEventListener("click", function(event) {
   event.preventDefault();
-  formElement.classList.replace("on", "off");
-  containerElement.classList.replace("unfocussed", "focussed");
+
+  // Get input elements
+  const titleInput = document.getElementById("title");
+  const authorInput = document.getElementById("author");
+  const pagesInput = document.getElementById("pages");
+
+  // Check if required fields are empty
+  let hasEmptyFields = false;
+
+  if (!titleInput.value) {
+    titleInput.classList.add("error");
+    hasEmptyFields = true;
+  } else {
+    titleInput.classList.remove("error");
+  }
+
+  if (!authorInput.value) {
+    authorInput.classList.add("error");
+    hasEmptyFields = true;
+  } else {
+    authorInput.classList.remove("error");
+  }
+
+  if (!pagesInput.value) {
+    pagesInput.classList.add("error");
+    hasEmptyFields = true;
+  } else {
+    pagesInput.classList.remove("error");
+  }
+
+  if (hasEmptyFields) {
+    alert("Please fill in all required fields.");
+    return;
+  }
 
   // Get form input values
   let bookTitle = titleInput.value;
   let bookAuthor = authorInput.value;
   let bookPages = pagesInput.value;
-  let bookRead = readInput.checked;
+  let bookRead = document.getElementById("read").checked;
 
   // Create a new book object
   const book = new Book(bookTitle, bookAuthor, bookPages, bookRead);
@@ -116,7 +148,6 @@ submitButton.addEventListener("click", function(event) {
   clearForm();
   // Display the updated book list
   displayBook();
-  console.log(book);
 });
 
 // Clear the form input values
@@ -124,5 +155,5 @@ function clearForm() {
   titleInput.value = "";
   authorInput.value = "";
   pagesInput.value = "";
-  readInput.checked = false;
+  document.getElementById("read").checked = false;
 }
