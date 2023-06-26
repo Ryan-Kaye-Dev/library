@@ -1,11 +1,21 @@
 let myLibrary = [];
 
-// Book constructor
+/* Book constructor function
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
+} */
+
+/* alternate use of class for Book*/
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 }
 
 // Toggle the read status of a book
